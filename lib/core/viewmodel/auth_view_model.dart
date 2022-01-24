@@ -16,6 +16,7 @@ class AuthViewModel extends GetxController {
   Rxn<User> _user = Rxn<User>();
   String? get user => _user.value?.email;
   final LocalStorageData localStorageData = Get.find();
+  TextEditingController? emailController, passwordController;
 
   @override
   void onInit() {

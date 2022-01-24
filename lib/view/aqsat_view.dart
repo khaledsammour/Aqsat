@@ -2,6 +2,7 @@ import 'package:aqsat/core/viewmodel/aqsatViewModel.dart';
 import 'package:aqsat/view/admin/aqsatViewAdmin.dart';
 import 'package:aqsat/view/checkout/buy_detailView.dart';
 import 'package:aqsat/view/widget/custom_text.dart';
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_countdown_timer/flutter_countdown_timer.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -17,9 +18,9 @@ class AqsatView extends StatelessWidget {
               ? Center(child: CircularProgressIndicator())
               : controller.userModel.type == 'admin'
                   ? AdminViewAqsat()
-                  : controller.aqsatme.length != 0
-                      ? _cart()
-                      : _cartEmpty()),
+                  : controller.aqsatme.length == 0
+                      ? _cartEmpty()
+                      : _cart()),
     );
   }
 }
@@ -61,8 +62,8 @@ Widget _cart() {
                             Container(
                                 height: 150,
                                 width: 150,
-                                child: Image.network(
-                                  controller.aqsatme[index].img,
+                                child: CachedNetworkImage(
+                                  imageUrl: controller.aqsatme[index].img,
                                   fit: BoxFit.contain,
                                 )),
                             Padding(

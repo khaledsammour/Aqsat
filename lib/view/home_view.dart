@@ -6,6 +6,7 @@ import 'package:aqsat/view/product_view.dart';
 import 'package:aqsat/view/textFiled_widget.dart';
 import 'package:aqsat/view/widget/custom_butoon.dart';
 import 'package:aqsat/view/widget/custom_text.dart';
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:material_floating_search_bar/material_floating_search_bar.dart';
@@ -367,8 +368,8 @@ class HomeView extends StatelessWidget {
                               height:
                                   MediaQuery.of(context).size.height * 0.2 + 20,
                               width: MediaQuery.of(context).size.width * 1,
-                              child: Image.network(
-                                controller.adsModel[index].img,
+                              child: CachedNetworkImage(
+                                imageUrl: controller.adsModel[index].img,
                                 fit: BoxFit.cover,
                               ),
                             ),
@@ -414,8 +415,8 @@ class HomeView extends StatelessWidget {
                       width: 60,
                       child: Padding(
                         padding: const EdgeInsets.all(8.0),
-                        child:
-                            Image.network(controller.categoryModel[index].img),
+                        child: CachedNetworkImage(
+                            imageUrl: controller.categoryModel[index].img),
                       ),
                     ),
                     SizedBox(
@@ -552,11 +553,11 @@ class HomeView extends StatelessWidget {
                         Padding(
                           padding: const EdgeInsets.symmetric(
                               horizontal: 10, vertical: 0),
-                          child: Container(
-                            width: 140,
-                            height: 110,
-                            child: Image.network(
-                              controller.popular[index].img,
+                          child: ClipRRect(
+                            child: CachedNetworkImage(
+                              imageUrl: controller.popular[index].img,
+                              height: 110,
+                              width: 140,
                               fit: BoxFit.contain,
                             ),
                           ),

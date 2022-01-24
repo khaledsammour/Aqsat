@@ -5,6 +5,7 @@ import 'package:aqsat/model/buyModel.dart';
 import 'package:aqsat/model/user_model.dart';
 import 'package:aqsat/view/widget/custom_butoon.dart';
 import 'package:aqsat/view/widget/custom_text.dart';
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -24,8 +25,8 @@ class OrdersDetailsView extends StatelessWidget {
               Container(
                 height: 270,
                 width: MediaQuery.of(context).size.width,
-                child: Image.network(
-                  model.img,
+                child: CachedNetworkImage(
+                  imageUrl: model.img,
                   fit: BoxFit.fill,
                 ),
               ),
@@ -104,6 +105,32 @@ class OrdersDetailsView extends StatelessWidget {
                           height: 15,
                         ),
                         CustomText(
+                          title: 'Email:',
+                        ),
+                        SizedBox(
+                          height: 15,
+                        ),
+                        CustomText(
+                          title: userModel.email,
+                          fontSize: 18,
+                        ),
+                        SizedBox(
+                          height: 15,
+                        ),
+                        CustomText(
+                          title: 'Phone Number:',
+                        ),
+                        SizedBox(
+                          height: 15,
+                        ),
+                        CustomText(
+                          title: userModel.phoneNumber,
+                          fontSize: 18,
+                        ),
+                        SizedBox(
+                          height: 15,
+                        ),
+                        CustomText(
                           title: 'First Pay:',
                         ),
                         SizedBox(
@@ -140,28 +167,29 @@ class OrdersDetailsView extends StatelessWidget {
                   children: [
                     Padding(
                       padding: const EdgeInsets.all(10.0),
-                      child: Column(
-                        children: [
-                          CustomText(
-                            title: 'Left',
-                            fontSize: 18,
-                            color: Colors.grey,
-                          ),
-                          SizedBox(
-                            height: 5,
-                          ),
-                          CustomText(
-                            title: model.total + ' JOD',
-                            color: primaryColor,
-                            fontSize: 18,
-                          )
-                        ],
+                      child: Container(
+                        width: MediaQuery.of(context).size.width * .2 + 20,
+                        child: Column(
+                          children: [
+                            CustomText(
+                              title: 'Left',
+                              fontSize: 18,
+                              color: Colors.grey,
+                            ),
+                            SizedBox(
+                              height: 5,
+                            ),
+                            CustomText(
+                              title: model.total + ' JOD',
+                              color: primaryColor,
+                              fontSize: 18,
+                            )
+                          ],
+                        ),
                       ),
                     ),
                     Container(
-                      width: MediaQuery.of(context).size.width * 0.4,
-                      padding: EdgeInsets.all(20),
-                      height: 100,
+                      width: MediaQuery.of(context).size.width * 0.3 + 10,
                       child: CustomButton(
                         onPressed: () {
                           Get.bottomSheet(Padding(
@@ -215,9 +243,8 @@ class OrdersDetailsView extends StatelessWidget {
                       ),
                     ),
                     Container(
-                      width: MediaQuery.of(context).size.width * 0.3 + 5,
-                      padding: EdgeInsets.all(20),
-                      height: 100,
+                      width: MediaQuery.of(context).size.width * 0.3 + 10,
+                      padding: EdgeInsets.all(10),
                       child: CustomButton(
                         onPressed: () {
                           Get.bottomSheet(Padding(

@@ -48,6 +48,7 @@ dependencies:
   animations: ^2.0.2
   flutter_countdown_timer: ^4.1.0
   connectivity:
+  cached_network_image:
   
   
   

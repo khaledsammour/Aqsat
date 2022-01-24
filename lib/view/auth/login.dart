@@ -67,10 +67,6 @@ class Login extends GetWidget<AuthViewModel> {
                         SizedBox(
                           height: 50,
                         ),
-                        _buildEmail(),
-                        SizedBox(
-                          height: 20,
-                        ),
                         _buildPassword(),
                         _buildForgetPassword(),
                         _buildLoginButton(),
@@ -85,35 +81,40 @@ class Login extends GetWidget<AuthViewModel> {
     );
   }
 
-  Widget _buildEmail() {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        Text(
-          "Email",
-          style: TextStyle(
-              color: Colors.white, fontSize: 16, fontWeight: FontWeight.bold),
-        ),
-        SizedBox(
-          height: 10,
-        ),
-        Container(
-          alignment: Alignment.centerLeft,
-          decoration: BoxDecoration(
-              color: Colors.white,
-              borderRadius: BorderRadius.circular(10),
-              boxShadow: [
-                BoxShadow(
-                    color: Colors.black26, blurRadius: 6, offset: Offset(0, 2))
-              ]),
-          height: 60,
-          child: TextField(
-            onChanged: (value) {
-              controller.email = value;
-            },
-            keyboardType: TextInputType.emailAddress,
-            style: TextStyle(color: Colors.black87),
-            decoration: InputDecoration(
+  Widget _buildPassword() {
+    return AutofillGroup(
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Text(
+            "Email",
+            style: TextStyle(
+                color: Colors.white, fontSize: 16, fontWeight: FontWeight.bold),
+          ),
+          SizedBox(
+            height: 10,
+          ),
+          Container(
+            alignment: Alignment.centerLeft,
+            decoration: BoxDecoration(
+                color: Colors.white,
+                borderRadius: BorderRadius.circular(10),
+                boxShadow: [
+                  BoxShadow(
+                      color: Colors.black26,
+                      blurRadius: 6,
+                      offset: Offset(0, 2))
+                ]),
+            height: 60,
+            child: TextField(
+              onChanged: (value) {
+                controller.email = value;
+              },
+              controller: controller.emailController,
+              keyboardType: TextInputType.emailAddress,
+              style: TextStyle(color: Colors.black87),
+              autofillHints: [AutofillHints.email],
+              decoration: InputDecoration(
                 border: InputBorder.none,
                 contentPadding: EdgeInsets.only(top: 14),
                 prefixIcon: Icon(
@@ -121,53 +122,55 @@ class Login extends GetWidget<AuthViewModel> {
                   color: Color(0xff2f2e3f),
                 ),
                 hintText: 'Email',
-                hintStyle: TextStyle(color: Colors.black38)),
+                hintStyle: TextStyle(color: Colors.black38),
+              ),
+            ),
           ),
-        )
-      ],
-    );
-  }
-
-  Widget _buildPassword() {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        Text(
-          "Password",
-          style: TextStyle(
-              color: Colors.white, fontSize: 16, fontWeight: FontWeight.bold),
-        ),
-        SizedBox(
-          height: 10,
-        ),
-        Container(
-          alignment: Alignment.centerLeft,
-          decoration: BoxDecoration(
-              color: Colors.white,
-              borderRadius: BorderRadius.circular(10),
-              boxShadow: [
-                BoxShadow(
-                    color: Colors.black26, blurRadius: 6, offset: Offset(0, 2))
-              ]),
-          height: 60,
-          child: TextField(
-            onChanged: (value) {
-              controller.password = value;
-            },
-            obscureText: true,
-            style: TextStyle(color: Colors.black87),
-            decoration: InputDecoration(
-                border: InputBorder.none,
-                contentPadding: EdgeInsets.only(top: 14),
-                prefixIcon: Icon(
-                  Icons.lock,
-                  color: Color(0xff2f2e3f),
-                ),
-                hintText: 'Password',
-                hintStyle: TextStyle(color: Colors.black38)),
+          SizedBox(
+            height: 20,
           ),
-        )
-      ],
+          Text(
+            "Password",
+            style: TextStyle(
+                color: Colors.white, fontSize: 16, fontWeight: FontWeight.bold),
+          ),
+          SizedBox(
+            height: 10,
+          ),
+          Container(
+            alignment: Alignment.centerLeft,
+            decoration: BoxDecoration(
+                color: Colors.white,
+                borderRadius: BorderRadius.circular(10),
+                boxShadow: [
+                  BoxShadow(
+                      color: Colors.black26,
+                      blurRadius: 6,
+                      offset: Offset(0, 2))
+                ]),
+            height: 60,
+            child: TextField(
+              onChanged: (value) {
+                controller.password = value;
+              },
+              controller: controller.passwordController,
+              obscureText: true,
+              style: TextStyle(color: Colors.black87),
+              autofillHints: [AutofillHints.password],
+              onEditingComplete: () => TextInput.finishAutofillContext(),
+              decoration: InputDecoration(
+                  border: InputBorder.none,
+                  contentPadding: EdgeInsets.only(top: 14),
+                  prefixIcon: Icon(
+                    Icons.lock,
+                    color: Color(0xff2f2e3f),
+                  ),
+                  hintText: 'Password',
+                  hintStyle: TextStyle(color: Colors.black38)),
+            ),
+          )
+        ],
+      ),
     );
   }
 
