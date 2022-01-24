@@ -34,8 +34,8 @@ dependencies:
   cloud_firestore: "^1.0.1"
   firebase_storage: ^9.0.0
   image_picker: ^0.7.0-nullsafety
-  get: ^4.1.4
-  google_sign_in: ^5.1.0
+  get:
+  google_sign_in: 
   flutter_facebook_auth: "^3.5.0"
   sqflite: ^2.0.0+2
   path: ^1.7.0
